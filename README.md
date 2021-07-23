@@ -8,7 +8,7 @@ No more bookmarks on your social media apps ;)
 ## The wishilist - v0 Roadmap
 
 - [x] Write down the WAC idea (more or less)
-- [ ] Dump initial workouts as yaml files. **Human oriented** and machine readable
+- [ ] Dump initial workouts as plain files. **Human oriented** and machine readable
 - [ ] Define WAC v0 YAML file schema. *One way all the way*
 - [ ] Prototype tool to export workouts for any WOD app. Target "Seconds" mobile app
 - [ ] ???

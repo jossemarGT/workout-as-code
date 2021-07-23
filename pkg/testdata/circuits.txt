@@ -1,0 +1,23 @@
+// This is not a title
+
+## Push set
+
+10	Push ups
+1m	Rest
+// In between comment
+10	Push ups    // After exercise comment
+1m	Rest
+
+// Un-even amount of empty lines
+
+
+10	Push ups
+1m	Rest
+
+## Pull set // NOT a comment
+8	Austrlian pull ups // This line is using tabs
+1m  Rest // This line is using spaces
+8	Austrlian pull ups
+1M	Rest // Key unsensitve for time units
+8	Austrlian pull ups
+1m	Rest

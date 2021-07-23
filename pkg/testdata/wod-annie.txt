@@ -1,0 +1,12 @@
+## Annie - For Time
+
+50	double-unders
+50	sit-ups
+40	double-unders
+40	sit-ups
+30	double-unders
+30	sit-ups
+20	double-unders
+20	sit-ups
+10	double-unders
+10	sit-ups

@@ -1,11 +1,10 @@
 // This is not a title
 
-## Push set
+## Push set - Superset
 
 10	Push ups
 1m	Rest
-// In between comment
-10	Push ups    // After exercise comment
+10	Push ups
 1m	Rest
 
 // Un-even amount of empty lines
@@ -15,9 +14,11 @@
 1m	Rest
 
 ## Pull set // NOT a comment
-8	Austrlian pull ups // This line is using tabs
-1m  Rest // This line is using spaces
 8	Austrlian pull ups
-1M	Rest // Key unsensitve for time units
+// ^ This line is using tabs
+1m  Rest
+// ^ This line is using spaces
+8	Austrlian pull ups
+1M	Rest
 8	Austrlian pull ups
 1m	Rest

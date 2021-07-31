@@ -14,33 +14,61 @@ import (
 )
 
 // var timeUnits = []string{"s", "m", "h", "sec(s)?", "min(s)", "hr(s)?"}
-// var distanceUnits = []string{"mt(s)?", "km(s)?", "mi", "mile(s)?", "ft(s)?"}
-// var repetitionUnits = []string{"x"}
 
-var workoutLexer = stateful.MustSimple([]stateful.Rule{
-	{Name: `Quantity`, Pattern: `\d+(?:\.\d+)?(?i)[a-z]*`, Action: nil},
-	{Name: `CTitle`, Pattern: `##+[^#\n]*`, Action: nil},  // Circuit Title
-	{Name: `WTitle`, Pattern: `#[^#\n]*`, Action: nil},    // Workout Title
-	{Name: "comment", Pattern: `//[^\n]*`, Action: nil},   //
-	{Name: "whitespace", Pattern: `\s+`, Action: nil},     //
-	{Name: `GString`, Pattern: `\S+[^/\n]+`, Action: nil}, // Greedy String
+var wodStatefulLexer = stateful.Must(stateful.Rules{
+	"Root": {
+		{Name: `Quantity`, Pattern: `\d+(?:\.\d+)?(?i)[a-z]*`, Action: nil},
+		{Name: `WodTitle`, Pattern: `#[^#\n]+`, Action: nil},              // Workout Title
+		{Name: `tStart`, Pattern: `##+`, Action: stateful.Push("CTitle")}, // Circuit Title Start
+		{Name: "comment", Pattern: `//[^\n]*`, Action: nil},               // comments (elided)
+		{Name: `GString`, Pattern: `[^\n]+`, Action: nil},                 // Greedy String (sink hole)
+		{Name: "whitespace", Pattern: `\s+`, Action: nil},                 // orphan whitespaces (elided)
+	},
+	"CTitle": {
+		{Name: "newline", Pattern: `\r?\n`, Action: stateful.Pop()},
+		{Name: `WodType`, Pattern: `(?i)(AMRAP|EMOM|tabata|for-time)`, Action: nil},
+		{Name: `Quantity`, Pattern: `\d+(?:\.\d+)?(?i)[a-z]*`, Action: nil},
+		{Name: `MetaDiv`, Pattern: `(?:\s-+\s|;)`, Action: nil},
+		{Name: `Colon`, Pattern: `:`, Action: nil},
+		{Name: `Ident`, Pattern: `(?i)[a-z][\w-]+`, Action: nil},
+		{Name: `Punct`, Pattern: `[!/@[` + "`" + `{~]`, Action: nil},
+		{Name: "space", Pattern: `[\t ]+`, Action: nil},
+		stateful.Return(),
+	},
 })
 
 type Workout struct {
-	Identifier string     `parser:"@WTitle?"`
+	Identifier string     `parser:"@WodTitle?"`
 	Sets       []*Set     `parser:"( @@"`
 	Circuits   []*Circuit `parser:"| @@ )*"`
 }
 
-type Tag struct {
-	Pos        lexer.Position
-	Identifier string `parser:"@Label"`
-	GString    string `parser:"@GString"`
+type Circuit struct {
+	Title Title  `parser:"@@"`
+	Sets  []*Set `parser:"@@*"`
 }
 
-type Circuit struct {
-	Identifier string `parser:"@CTitle"`
-	Sets       []*Set `parser:"@@*"`
+type Title struct {
+	TitleFragments []*Fragment `parser:"@@*"`
+	Metadata       []*Metadata `parser:"(MetaDiv @@+)?"`
+}
+
+type Fragment struct {
+	Ident string `parser:"( @Ident"`
+	Punct string `parser:"| @Punct"`
+	Colon string `parser:"| @Colon)"`
+}
+
+type Metadata struct {
+	WodType  string    `parser:"( @WodType"`
+	Quantity *Quantity `parser:"| @Quantity"`
+	Tags     []*Tag    `parser:"| @@)"`
+}
+
+type Tag struct {
+	Key      string    `parser:"@Ident Colon"`
+	Quantity *Quantity `parser:"(@Quantity"`
+	Value    string    `parser:"| @Ident)"`
 }
 
 type Set struct {
@@ -50,9 +78,16 @@ type Set struct {
 	Exercise *Exercise `parser:"@@"`
 }
 
+type Exercise struct {
+	Pos lexer.Position
+
+	GString string `parser:"@GString"`
+}
+
 type Quantity struct {
 	Value float64
 	Unit  string
+	// TODO add IsTime() bool method
 }
 
 var notNumber = regexp.MustCompile(`\D+`)
@@ -73,14 +108,8 @@ func (q *Quantity) Capture(values []string) (err error) {
 	return err
 }
 
-type Exercise struct {
-	Pos lexer.Position
-
-	GString string `parser:"@GString"`
-}
-
 var parser = participle.MustBuild(&Workout{},
-	participle.Lexer(workoutLexer),
+	participle.Lexer(wodStatefulLexer),
 )
 
 func Parse(wod *Workout, r io.Reader) error {

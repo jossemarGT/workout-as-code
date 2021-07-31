@@ -2,6 +2,6 @@
 
 1mile	run
 100		pull-ups
-200		push-ups
+200		push-ups 1/2 // y el comentario?
 300		air squats
 1		mile run

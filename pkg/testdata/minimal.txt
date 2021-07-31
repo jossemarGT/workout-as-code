@@ -1,9 +1,11 @@
 
 
-10x	Push ups // This line is using tabs
-1m	Rest // This line is using spaces
+10x	Push ups 1/2
+// ^ This line is using tabs
+1m  Rest
+// ^ This line is using spaces
 10X	Push ups
-1M	Rest // Key unsensitve for time units
+1M	Rest
 10	Push ups
 1m	Rest
 

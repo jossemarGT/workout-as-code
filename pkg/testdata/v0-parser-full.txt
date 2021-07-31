@@ -4,14 +4,14 @@
 // v0 Workout language goes as follows:
 //
 //      Workout = <wtitle>? (Set | Circuit)* .
+//      Circuit = <ctitle> Set+ .
 //      Set = <quantity> Exercise .
 //      Exercise = <gstring> .
-//      Circuit = <ctitle> Set* .
 //
 // == Details worth noticing
 // - All the strings are "greedy" making this language newline dependent
 // - Comments were defined for mere convenience on the language design
-// - Based on the last point ^^^, the usage of // on titles is allowed
+// - Comments are only when // are used at the beginning of the line
 // - The parser follows a formal language but it *must* be forgiving on user input
 //
 // Got a suggestion? Pull requests are welcome ;)
@@ -20,7 +20,7 @@
 # ////////// The sample workout //////////
 
 10m mobility warm up //
-//                   ^^^ Empty comment ignored as exptect
+//                   ^^ Became part of the exercise text
 
 ## Push set
 10	Push ups
@@ -28,19 +28,22 @@
 10	Push ups
 1m	Rest
 10	Push ups
-1M	Rest // Key unsensitve for time units
+1M	Rest
+//  Any word after a number will be taken as an "unit"
 
-## //> Pull set <//
+## // Pull set //
 
-8	Austrlian pull ups  // <--- This line is using tabs
-1m  Rest                // <--- This line is using spaces
+8	Austrlian pull ups
+// ^^ This line is using tabs
+1m  Rest
+// ^^ This line is using spaces
 8	Austrlian pull ups
 1M	Rest
 8	Austrlian pull ups
 1m	Rest
 
 ## Core set - 4x rest: 1m
-// The metadata in the title is not recognized *yet*
+//          ^ The text after the " - " has been idetified as metadata
 
 10x	Crunches
 1m	Rest

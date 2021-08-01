@@ -1,49 +1,66 @@
-// Testing all the capabilities supported by v0 Workout language parser.
-//
-// In case I forget to document this somewhere the EBNF representation of the
-// v0 Workout language goes as follows:
-//
-//      Workout = <wtitle>? (Set | Circuit)* .
-//      Circuit = <ctitle> Set+ .
-//      Set = <quantity> Exercise .
-//      Exercise = <gstring> .
-//
-// == Details worth noticing
-// - All the strings are "greedy" making this language newline dependent
-// - Comments were defined for mere convenience on the language design
-// - Comments are only when // are used at the beginning of the line
-// - The parser follows a formal language but it *must* be forgiving on user input
-//
-// Got a suggestion? Pull requests are welcome ;)
-//
+<!--
+Testing all the capabilities supported by v0 Workout language parser.
 
-# ////////// The sample workout //////////
+In case I forget to document this somewhere the EBNF representation of the
+v0 Workout language goes as follows:
 
-10m mobility warm up //
-//                   ^^ Became part of the exercise text
+      Workout = <wodtitle>? (Set | Circuit)* .
+      Circuit = Title+ Set* .
+      Set = <quantity> Exercise .
+      Exercise = <gstring> .
+      Title = Fragment* (<metadiv> Metadata+)? <titleend> .
+      Fragment = (<tgstring> | <puntc>) .
+      Metadata = (<wodtype> | <quantity> | Word) .
+      Word = <ident> (<colon> Tag)? .
+      Tag = (<quantity> | <ident>) .
+
+== Details worth noticing
+- This language's goal is to be flexible enough for humans to share their workouts
+- This language takes inspiration over Markdown due to its popularity, but it is not fully compatible
+- This language simulates 2 column tables using spaces and newlines.
+- ^ Unfortunately this langauge's tables do not render correctly on MD viewers without workarounds
+- Markdonw elements like title and comments work as expected
+- As a rule of thumbs is suggested to add an extra new line for every title.
+- ^ Otherwise, if that title holds metadata will end up consuming the first execise as metadata
+- All the strings outside the titles are "greedy" so the comments do not work there
+
+Got a suggestion? Pull requests are welcome ;)
+-->
+
+# // The sample workout //
+
+10m mobility warm up
 
 ## Push set
+
 10	Push ups
 1m	Rest
+
 10	Push ups
 1m	Rest
+
 10	Push ups
 1M	Rest
-//  Any word after a number will be taken as an "unit"
+
 
 ## // Pull set //
 
 8	Austrlian pull ups
-// ^^ This line is using tabs
-1m  Rest
-// ^^ This line is using spaces
+1m	Rest
 8	Austrlian pull ups
-1M	Rest
+1m    Rest
 8	Austrlian pull ups
 1m	Rest
 
 ## Core set - 4x rest: 1m
-//          ^ The text after the " - " has been idetified as metadata
 
 10x	Crunches
 1m	Rest
+
+## Cardio set - 4x
+
+10x	Jumping jacks
+1m	rest
+
+200mts	run
+1m		rest

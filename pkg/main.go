@@ -17,23 +17,39 @@ import (
 
 var wodStatefulLexer = stateful.Must(stateful.Rules{
 	"Root": {
+		stateful.Include("Common"),
 		{Name: `Quantity`, Pattern: `\d+(?:\.\d+)?(?i)[a-z]*`, Action: nil},
-		{Name: `WodTitle`, Pattern: `#[^#\n]+`, Action: nil},              // Workout Title
-		{Name: `tStart`, Pattern: `##+`, Action: stateful.Push("CTitle")}, // Circuit Title Start
-		{Name: "comment", Pattern: `//[^\n]*`, Action: nil},               // comments (elided)
-		{Name: `GString`, Pattern: `[^\n]+`, Action: nil},                 // Greedy String (sink hole)
-		{Name: "whitespace", Pattern: `\s+`, Action: nil},                 // orphan whitespaces (elided)
+		{Name: `WodTitle`, Pattern: `#[^#\n]+`, Action: nil},                  // Workout Title
+		{Name: `titleStart`, Pattern: `##+`, Action: stateful.Push("CTitle")}, // Circuit Title Start
+		{Name: `block`, Pattern: "```\\w*", Action: nil},                      // MD Block (elided)
+		{Name: "whitespace", Pattern: `\s+`, Action: nil},                     // orphan whitespaces (elided)
+		{Name: `GString`, Pattern: `\S[^\n]+`, Action: nil},                   // Greedy String
 	},
 	"CTitle": {
-		{Name: "newline", Pattern: `\r?\n`, Action: stateful.Pop()},
-		{Name: `WodType`, Pattern: `(?i)(AMRAP|EMOM|tabata|for-time)`, Action: nil},
+		stateful.Include("Common"),
+		{Name: "TitleEnd", Pattern: `\r?\n`, Action: stateful.Pop()},                //
+		{Name: `MetaDiv`, Pattern: `(?:-+\s|;)`, Action: stateful.Push("Metadata")}, //
+		{Name: `Puntc`, Pattern: `(-|<)`, Action: nil},                              //
+		{Name: `TGString`, Pattern: `[^-;<\n]+`, Action: nil},                       // Title Greedy String
+		stateful.Return(),
+	},
+	"Metadata": {
+		stateful.Include("Common"),
+		{Name: `WodType`, Pattern: `(?i)(AMRAP|EMOM|tabata|superset|dropset)`, Action: nil},
 		{Name: `Quantity`, Pattern: `\d+(?:\.\d+)?(?i)[a-z]*`, Action: nil},
-		{Name: `MetaDiv`, Pattern: `(?:\s-+\s|;)`, Action: nil},
 		{Name: `Colon`, Pattern: `:`, Action: nil},
 		{Name: `Ident`, Pattern: `(?i)[a-z][\w-]+`, Action: nil},
-		{Name: `Punct`, Pattern: `[!/@[` + "`" + `{~]`, Action: nil},
+		{Name: "titleEnd", Pattern: `\r?\n`, Action: stateful.Pop()},
 		{Name: "space", Pattern: `[\t ]+`, Action: nil},
 		stateful.Return(),
+	},
+	"Common": {
+		{Name: "commentStart", Pattern: `<!--+`, Action: stateful.Push("Comment")},
+	},
+	"Comment": {
+		{Name: "commentFinish", Pattern: `--+>`, Action: stateful.Pop()},
+		{Name: "dash", Pattern: `-`, Action: nil},
+		{Name: "comment", Pattern: `[^-]+`, Action: nil},
 	},
 })
 
@@ -44,30 +60,33 @@ type Workout struct {
 }
 
 type Circuit struct {
-	Title Title  `parser:"@@"`
-	Sets  []*Set `parser:"@@*"`
+	Title []*Title `parser:"@@+"`
+	Sets  []*Set   `parser:"@@*"`
 }
 
 type Title struct {
 	TitleFragments []*Fragment `parser:"@@*"`
-	Metadata       []*Metadata `parser:"(MetaDiv @@+)?"`
+	Metadata       []*Metadata `parser:"(MetaDiv @@+)? TitleEnd"`
 }
 
 type Fragment struct {
-	Ident string `parser:"( @Ident"`
-	Punct string `parser:"| @Punct"`
-	Colon string `parser:"| @Colon)"`
+	String string `parser:"( @TGString"`
+	Puntc  string `parser:"| @Puntc)"`
 }
 
 type Metadata struct {
 	WodType  string    `parser:"( @WodType"`
 	Quantity *Quantity `parser:"| @Quantity"`
-	Tags     []*Tag    `parser:"| @@)"`
+	Words    []*Word   `parser:"| @@ )"`
+}
+
+type Word struct {
+	String string `parser:"@Ident"`
+	Tag    *Tag   `parser:"(Colon @@)?"`
 }
 
 type Tag struct {
-	Key      string    `parser:"@Ident Colon"`
-	Quantity *Quantity `parser:"(@Quantity"`
+	Quantity *Quantity `parser:"( @Quantity"`
 	Value    string    `parser:"| @Ident)"`
 }
 

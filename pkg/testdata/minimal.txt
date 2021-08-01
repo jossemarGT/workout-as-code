@@ -1,9 +1,9 @@
 
 
 10x	Push ups 1/2
-// ^ This line is using tabs
-1m  Rest
-// ^ This line is using spaces
+<!-- ^ This line is using tabs -->
+1m    Rest
+<!-- ^ This line is using spaces -->
 10X	Push ups
 1M	Rest
 10	Push ups
@@ -11,4 +11,4 @@
 
 
 
-// How about a comment over here ?
+<!--  How about a comment over here ? -->

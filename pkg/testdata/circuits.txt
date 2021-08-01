@@ -1,4 +1,4 @@
-// This is not a title
+<!-- This is not a title -->
 
 ## Push set - Superset
 
@@ -7,17 +7,18 @@
 10	Push ups
 1m	Rest
 
-// Un-even amount of empty lines
+<!-- Un-even amount of empty lines -->
 
 
 10	Push ups
 1m	Rest
 
-## Pull set // NOT a comment
+## Pull set // NOT a comment - Superset <!-- Inline comment-->
+
 8	Austrlian pull ups
-// ^ This line is using tabs
+<!-- ^ This line is using tabs -->
 1m  Rest
-// ^ This line is using spaces
+<!-- ^ This line is using spaces -->
 8	Austrlian pull ups
 1M	Rest
 8	Austrlian pull ups

@@ -4,15 +4,14 @@ Testing all the capabilities supported by v0 Workout language parser.
 In case I forget to document this somewhere the EBNF representation of the
 v0 Workout language goes as follows:
 
-      Workout = <wodtitle>? (Set | Circuit)* .
+      Workout = (Set | Circuit)* .
+      Set = <quantity> <gstring> .
       Circuit = Title+ Set* .
-      Set = <quantity> Exercise .
-      Exercise = <gstring> .
-      Title = Fragment* (<metadiv> Metadata+)? <titleend> .
-      Fragment = (<tgstring> | <puntc>) .
-      Metadata = (<wodtype> | <quantity> | Word) .
-      Word = <ident> (<colon> Tag)? .
-      Tag = (<quantity> | <ident>) .
+      Title = <titlestart> TitleFragment* (<metadiv> Metadata+)? <titleend> .
+      TitleFragment = (<tgstring> | <puntc>) .
+      Metadata = (<wodtype> | <quantity> | MetaWord) .
+      MetaWord = <ident> (<colon> MataTag)? .
+      MataTag = (<quantity> | <ident>) .
 
 == Details worth noticing
 - This language's goal is to be flexible enough for humans to share their workouts

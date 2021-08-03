@@ -9,7 +9,7 @@ insert_final_newline = true
 
 [*.{txt}]
 indent_style = tab
-indent_size = 2
+indent_size = 4
 
 [*.{md,yml,yaml}]
 indent_style = space

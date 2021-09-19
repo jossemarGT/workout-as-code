@@ -1,0 +1,38 @@
+name: Verify workout files
+on:
+  push:
+    branches-ignore:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          base: master
+          list-files: shell
+          filters: |
+            workout:
+              - added|modified: 'data/**'
+      - name: Markdown lint
+        if: steps.filter.outputs.workout == 'true'
+        uses: docker://avtodev/markdown-lint:v1
+        with:
+          config: .markdownlint.yaml
+          args: "${{ steps.filter.outputs.workout_files }}"
+      - name: Setup Go build environment
+        uses: actions/setup-go@v2
+        if: steps.filter.outputs.workout == 'true'
+        with:
+          go-version: '1.16'
+      - name: Parse workout files
+        if: steps.filter.outputs.workout == 'true'
+        run: |
+          cd pkg
+          for f in ${{ steps.filter.outputs.workout_files }}; do
+            go run main.go < "../$f"
+          done

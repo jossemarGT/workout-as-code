@@ -1,4 +1,5 @@
 ## Leg easy training - 4x
+
 20x	Jump Squads
 1m	Rest
 

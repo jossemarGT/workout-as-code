@@ -1,8 +1,12 @@
 name: Verify workout files
+
 on:
   push:
     branches-ignore:
       - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+
 jobs:
   build:
     runs-on: ubuntu-latest

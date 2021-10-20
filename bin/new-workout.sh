@@ -5,21 +5,21 @@ set -e
 main () {
     echo "Before we go, let's answer a couple of questions first"
 
-    read -p "What is the workout discipline? ie: crossfit [freestyle]: " discipline
+    read -r -p "What is the workout discipline? ie: crossfit [freestyle]: " discipline
     discipline=${discipline:-freestyle}
-    echo $discipline
+    echo "$discipline"
 
-    read -p "Would you like to add other keywords to the name (comma separated)? ie: core,push,supperset []: " raw_meta
-    echo $raw_meta
+    read -r -p "Would you like to add other keywords to the name (comma separated)? ie: core,push,supperset []: " raw_meta
+    echo "$raw_meta"
 
-    if [[ ! -z "$raw_meta" ]]; then
+    if [[ -n "$raw_meta" ]]; then
         metadata="${raw_meta//,/-}-"
     fi
 
     readonly date=$(date +'%Y%-m%d')
     readonly filename="${discipline// /_}-${metadata// /_}${date}.md"
 
-    if [[ -f "${data/${filename}}" ]]; then
+    if [[ -f "data/${filename}" ]]; then
         "The file data/${filename} already exists, please try again"
         return 1
     fi
@@ -35,4 +35,3 @@ EOF
 
 
 main $@
-

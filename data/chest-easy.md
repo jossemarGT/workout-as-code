@@ -1,4 +1,5 @@
 ## Chest easy training - 4x
+
 50x	Jumping Jacks
 1m	Rest
 

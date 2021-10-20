@@ -5,13 +5,16 @@
 ## Contribution Guidelines
 
 * To add, remove or update a workout to the repository: Please, submit a pull request
-* Any new workout must be added under `data/` directory as markdown file
-* Make sure **you** already have tried out the workout for yourself before submitting
-* Please follow the Workout V0 language.
+* When adding a new workout, consider using the `bin/new-workout.sh` helper. But you are free to do it manually.
+* All the workouts are valid markdown files and recide into `data/` directory
+* Make sure **you** already have tried out the workout for yourself before submitting. Let's keep it genuine.
+* Please follow the Workout V0 language. It is futher elaborated on the README file.
 
 ## Verifying your contribution
 
-Every pull request will trigger a github action that will verify the following:
+Every pull request will trigger a github action to verify the following:
 
 - The new contents under `data/` are valid markdown documents (markdown lint)
-- The new contents under `data/` are Workout V0 language compatible
+- The new contents under `data/` are Workout V0 language compliant
+
+When all the verification pass, you are good to go. Read you on the PR thread :muscle:

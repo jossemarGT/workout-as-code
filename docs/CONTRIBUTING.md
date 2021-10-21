@@ -6,9 +6,9 @@
 
 * To add, remove or update a workout to the repository: Please, submit a pull request
 * When adding a new workout, consider using the `bin/new-workout.sh` helper. But you are free to do it manually.
-* All the workouts are valid markdown files and recide into `data/` directory
+* All the workouts are valid markdown files and reside into `data/` directory
 * Make sure **you** already have tried out the workout for yourself before submitting. Let's keep it genuine.
-* Please follow the Workout V0 language. It is futher elaborated on the README file.
+* Please follow the Workout V0 language. It is futher elaborated on the [README file](../README.md).
 
 ## Verifying your contribution
 

@@ -16,7 +16,7 @@ Pull requests are welcome, you can find the [contribution guidelines here](docs/
 ### Using the workout V0 language
 
 Inspired by the
-[workout of the day whiteboards](https://www.google.com/search?q=wod+whiteboard&tbm=isch)
+[workout of the day (WOD) whiteboards](https://www.google.com/search?q=wod+whiteboard&tbm=isch)
 you can find on any cross/functional training centre. The workout language aims
 to describe a WOD in a simple way.
 
@@ -28,8 +28,8 @@ amount of repetitions or target time. A minimal workout would look like this.
 ```
 
 As shown above, you have the number of repetitions followed by the exercise
-name. The amount can be immidiately followed by a suffix, i.e.: `1m`, but the
-are no semantic rules over these, so it is up to the human that reads it to
+name. The amount can be immidiately followed by a suffix, i.e.: `1m`, but there
+is no semantic rule over these, so it is up to the human that reads it to
 interpret it.
 
 Although it is grammatically correct (in workout language terms), a single
@@ -47,10 +47,10 @@ workout.
 1m  Rest
 ```
 
-That is better, but we might have a problem with the this example, as we would
+That is better, but we might have a problem with this example, as we would
 prefer to group the push exercises apart from the pull ones. In that case, we
-can use an H2 title to delimit each group of exercises. These groups are called
-"circuits". Our minimal workout now should look like this
+can use an `H2` title to delimit each group of exercises. These groups are called
+"circuits". Our minimal workout now should look like this.
 
 
 ```markdown
@@ -69,7 +69,7 @@ can use an H2 title to delimit each group of exercises. These groups are called
 1m  Rest
 ```
 
-Woth mentioning, a circuit can hold metadata, like limits or additional rules;
+Worth mentioning, a circuit can hold metadata, like limits or additional rules;
 this can be done by adding it after the ` - ` keyword (note the empty spaces
 around the dash). A good example of circuit metadata is this Crossfit staple
 workout:
@@ -125,7 +125,8 @@ workout. This one can hold metadata as well, in case it is needed.
 
 ### The workout v0 specification
 
-This languange aims to be a Markdown super set, the current ebnf represantion
+This language aims to be a Markdown super set, the current 
+[ebnf](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) represantation 
 goes like this:
 
 ```ebnf

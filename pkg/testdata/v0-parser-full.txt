@@ -18,7 +18,7 @@ v0 Workout language goes as follows:
 - This language takes inspiration over Markdown due to its popularity, but it is not fully compatible
 - This language simulates 2 column tables using spaces and newlines.
 - ^ Unfortunately this langauge's tables do not render correctly on MD viewers without workarounds
-- Markdonw elements like title and comments work as expected
+- Markdown elements like title and comments work as expected
 - As a rule of thumbs is suggested to add an extra new line for every title.
 - ^ Otherwise, if that title holds metadata will end up consuming the first execise as metadata
 - All the strings outside the titles are "greedy" so the comments do not work there

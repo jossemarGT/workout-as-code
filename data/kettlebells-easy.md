@@ -1,4 +1,5 @@
 ## Warmup - 2min
+
 Jumping jacks    1m
 Burpees          1m
 
@@ -19,4 +20,5 @@ Rest              1.5m
 
 
 ## Cool down - 2 min
+
 Breaths          2m

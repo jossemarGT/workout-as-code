@@ -18,7 +18,6 @@ Rest              20s
 Swings            30s
 Rest              1.5m
 
-
 ## Cool down - 2 min
 
 Breaths          2m

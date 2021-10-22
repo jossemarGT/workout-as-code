@@ -89,11 +89,11 @@ Finally, it is not required but an excellent gesture to add a title to the whole
 workout. This one can hold metadata as well, in case it is needed.
 
 ```markdown
-# // The sample workout //
+# The sample workout
 
 10m mobility warm up
 
-## Push set
+## Push
 
 10	Push ups
 1m	Rest
@@ -103,7 +103,7 @@ workout. This one can hold metadata as well, in case it is needed.
 1m	Rest
 
 
-## // Pull set //
+## // Pull //
 
 8   Austrlian pull ups
 1m  Rest
@@ -112,12 +112,12 @@ workout. This one can hold metadata as well, in case it is needed.
 8   Austrlian pull ups
 1m  Rest
 
-## Core set - 4x rest: 1m
+## Core - 4x rest: 1m
 
 10x	Crunches
 1m	Rest
 
-## Cardio set - 4x
+## Cardio - 4x
 
 10x Jumping jacks
 1m  Rest
@@ -125,8 +125,8 @@ workout. This one can hold metadata as well, in case it is needed.
 
 ### The workout v0 specification
 
-This language aims to be a Markdown super set, the current 
-[ebnf](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) represantation 
+This language aims to be a Markdown super set, the current
+[ebnf](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) represantation
 goes like this:
 
 ```ebnf

@@ -1,23 +1,22 @@
 ## Warmup - 2min
 
-Jumping jacks    60s
-Burpees          60s
+60s    Jumping jacks
+60s    Burpees
 
 ## Full body rookie workout - 3x
 
-Russian swings    30s
-Rest              20s
-Cleans            30s
-Rest              20s
-High pull         30s
-Rest              20s
-Snatches          30s
-Rest              20s
-Squat Jumps       30s
-Rest              20s
-Swings            30s
-Rest              60s
+30s    Russian swings
+20s    Rest
+30s    Cleans
+20s    Rest
+30s    High pull
+20s    Rest
+30s    Snatches
+20s    Rest
+30s    Squat Jumps
+20s    Rest
+30s    Swings
+60s    Rest
 
 ## Cool down - 2 min
-
-Breaths          120s
+2m     Breaths

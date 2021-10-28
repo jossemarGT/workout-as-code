@@ -1,7 +1,7 @@
 ## Warmup - 2min
 
-Jumping jacks    1m
-Burpees          1m
+Jumping jacks    60s
+Burpees          60s
 
 ## Full body rookie workout - 3x
 
@@ -16,8 +16,8 @@ Rest              20s
 Squat Jumps       30s
 Rest              20s
 Swings            30s
-Rest              1.5m
+Rest              60s
 
 ## Cool down - 2 min
 
-Breaths          2m
+Breaths          120s

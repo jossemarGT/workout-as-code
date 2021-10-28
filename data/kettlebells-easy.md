@@ -19,4 +19,5 @@
 60s    Rest
 
 ## Cool down - 2 min
+
 2m     Breaths

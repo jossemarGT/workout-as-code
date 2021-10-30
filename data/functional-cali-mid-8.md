@@ -19,8 +19,8 @@
 30s   Dragon flag hold
 8     Wall walk 8
 30s   Wall walk hold
-20    90 degres squat
-30s   90 degres squat hold
+20    Ninety degrees squat
+30s   Ninety degrees squat hold
 12    isometric push ups - 3 up 3 down
 12    Double lunges each leg
 1Max  hold frogstand

@@ -8,7 +8,7 @@
 10    Crab Walk
 5     Burpee High Jump
 
-## Workout - 3-4x
+## Workout - 4x
 
 10    Each Bulgarian Squat Jumps
 10    Each Reverse Lunges + Kick

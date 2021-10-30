@@ -16,7 +16,7 @@
 6     Support Press Raises Each Side
 30s   Superman Hold
 
-## HS. WORKOUT - 3-4x
+## HS. WORKOUT - 4x
 
 10    Handstand Push Up
 25s   Handstand Hold

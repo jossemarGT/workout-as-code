@@ -13,7 +13,7 @@
 35s   Explosive Jacks
 15s   Rest
 
-## Workout - 3-4x
+## Workout - 4x
 
 8   Handstand Push Up
 8   Each Pistol Squat

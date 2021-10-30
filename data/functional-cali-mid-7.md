@@ -2,7 +2,7 @@
 
 7min  Mobility
 
-## Workout: Cardio - 3-4x
+## Workout: Cardio - 4x
 
 10  Burpee
 40  Wall Mountain Climbers

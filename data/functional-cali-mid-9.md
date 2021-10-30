@@ -13,7 +13,7 @@
 30s   Plank get ups
 10s   Rest
 
-## Workout - AMRAP 3-4x limit:30min
+## Workout - AMRAP 4x limit:30min
 
 15    Push up
 30    High jumps / box jumps

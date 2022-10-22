@@ -7,19 +7,19 @@
 ## Workout - 18m30s
 
 1m Run
-1m30s Walk
+90sec Walk
 1m Run
-1m30s Walk
+90sec Walk
 1m Run
-1m30s Walk
+90sec Walk
 1m Run
-1m30s Walk
+90sec Walk
 1m Run
-1m30s Walk
+90sec Walk
 1m Run
-1m30s Walk
+90sec Walk
 1m Run
-1m30s Walk
+90sec Walk
 1m Run
 
 ## Cooldown - 5m

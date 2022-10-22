@@ -1,4 +1,4 @@
-# Start running - second week!
+# Start running - second week
 
 ## Warmup - 5m
 

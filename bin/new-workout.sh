@@ -35,7 +35,8 @@ main () {
     echo "The following file will be created data/${filename}, you can rename it afterwards"
 
     cat << EOF > "data/${filename}"
-# ${discipline} workout placeholder title
+# ${discipline} workout placeholder
+
 <!-- Your workout goes here -->
 
 EOF
